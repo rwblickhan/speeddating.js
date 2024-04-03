@@ -120,7 +120,6 @@ Deno.test("ordinalHandler matches 21st", () => {
 });
 
 Deno.test("ordinalHandler matches -1st", () => {
-  console.log("-1st".match(ordinalHandler.regex));
   assertEquals("-1st".match(ordinalHandler.regex)?.[1], "-1");
 });
 
