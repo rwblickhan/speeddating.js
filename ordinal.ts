@@ -1,4 +1,4 @@
-import { IncrementOutput } from "./types.ts";
+import { Handler, IncrementOutput } from "./types.ts";
 import { IncrementParams } from "./types.ts";
 
 function ordinalize(number: number): string {
@@ -25,3 +25,8 @@ export function incrementOrdinal({
     string: ordinalize(number + increment),
   };
 }
+
+export const ordinalHandler: Handler = {
+  regex: /(-?\b\d+)(?:st|nd|rd|th)\b/,
+  incrementer: incrementOrdinal,
+};

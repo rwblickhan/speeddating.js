@@ -1,5 +1,5 @@
 import { assertEquals } from "https://deno.land/std@0.220.0/assert/mod.ts";
-import { incrementOrdinal } from "./ordinal.ts";
+import { incrementOrdinal, ordinalHandler } from "./ordinal.ts";
 
 Deno.test("incrementOrdinal -2", () => {
   assertEquals(incrementOrdinal({ string: "-2", increment: 1 }), {
@@ -101,4 +101,37 @@ Deno.test("incrementOrdinal 1, increment by 2", () => {
   assertEquals(incrementOrdinal({ string: "1", increment: 2 }), {
     string: "3rd",
   });
+});
+
+Deno.test("ordinalHandler matches 1st", () => {
+  assertEquals("1st".match(ordinalHandler.regex)?.[1], "1");
+});
+
+Deno.test("ordinalHandler matches 2nd", () => {
+  assertEquals("2nd".match(ordinalHandler.regex)?.[1], "2");
+});
+
+Deno.test("ordinalHandler matches 3rd", () => {
+  assertEquals("3rd".match(ordinalHandler.regex)?.[1], "3");
+});
+
+Deno.test("ordinalHandler matches 21st", () => {
+  assertEquals("21st".match(ordinalHandler.regex)?.[1], "21");
+});
+
+Deno.test("ordinalHandler matches -1st", () => {
+  console.log("-1st".match(ordinalHandler.regex));
+  assertEquals("-1st".match(ordinalHandler.regex)?.[1], "-1");
+});
+
+Deno.test("ordinalHandler does not match 1", () => {
+  assertEquals(ordinalHandler.regex.test("1"), false);
+});
+
+Deno.test("ordinalHandler does not match 1stk", () => {
+  assertEquals(ordinalHandler.regex.test("1stk"), false);
+});
+
+Deno.test("ordinalHandler does not match k1st", () => {
+  assertEquals(ordinalHandler.regex.test("k1st"), false);
 });
