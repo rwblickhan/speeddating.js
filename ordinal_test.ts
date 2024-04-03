@@ -1,82 +1,104 @@
 import { assertEquals } from "https://deno.land/std@0.220.0/assert/mod.ts";
-import { ordinalize } from "./ordinal.ts";
+import { incrementOrdinal } from "./ordinal.ts";
 
-Deno.test("ordinalize first", () => {
-  assertEquals(ordinalize(1), "1st");
+Deno.test("incrementOrdinal -2", () => {
+  assertEquals(incrementOrdinal({ string: "-2", increment: 1 }), {
+    string: "-1st",
+  });
 });
 
-Deno.test("ordinalize second", () => {
-  assertEquals(ordinalize(2), "2nd");
+Deno.test("incrementOrdinal -1", () => {
+  assertEquals(incrementOrdinal({ string: "-1", increment: 1 }), {
+    string: "0th",
+  });
 });
 
-Deno.test("ordinalize third", () => {
-  assertEquals(ordinalize(3), "3rd");
+Deno.test("incrementOrdinal 0", () => {
+  assertEquals(incrementOrdinal({ string: "0", increment: 1 }), {
+    string: "1st",
+  });
 });
 
-Deno.test("ordinalize fourth", () => {
-  assertEquals(ordinalize(4), "4th");
+Deno.test("incrementOrdinal 1", () => {
+  assertEquals(incrementOrdinal({ string: "1", increment: 1 }), {
+    string: "2nd",
+  });
 });
 
-Deno.test("ordinalize fifth", () => {
-  assertEquals(ordinalize(5), "5th");
+Deno.test("incrementOrdinal 2", () => {
+  assertEquals(incrementOrdinal({ string: "2", increment: 1 }), {
+    string: "3rd",
+  });
 });
 
-Deno.test("ordinalize sixth", () => {
-  assertEquals(ordinalize(6), "6th");
+Deno.test("incrementOrdinal 3", () => {
+  assertEquals(incrementOrdinal({ string: "3", increment: 1 }), {
+    string: "4th",
+  });
 });
 
-Deno.test("ordinalize seventh", () => {
-  assertEquals(ordinalize(7), "7th");
+Deno.test("incrementOrdinal 10", () => {
+  assertEquals(incrementOrdinal({ string: "10", increment: 1 }), {
+    string: "11th",
+  });
 });
 
-Deno.test("ordinalize eighth", () => {
-  assertEquals(ordinalize(8), "8th");
+Deno.test("incrementOrdinal 11", () => {
+  assertEquals(incrementOrdinal({ string: "11", increment: 1 }), {
+    string: "12th",
+  });
 });
 
-Deno.test("ordinalize ninth", () => {
-  assertEquals(ordinalize(9), "9th");
+Deno.test("incrementOrdinal 12", () => {
+  assertEquals(incrementOrdinal({ string: "12", increment: 1 }), {
+    string: "13th",
+  });
 });
 
-Deno.test("ordinalize tenth", () => {
-  assertEquals(ordinalize(10), "10th");
+Deno.test("incrementOrdinal 13", () => {
+  assertEquals(incrementOrdinal({ string: "13", increment: 1 }), {
+    string: "14th",
+  });
 });
 
-Deno.test("ordinalize eleventh", () => {
-  assertEquals(ordinalize(11), "11th");
+Deno.test("incrementOrdinal 20", () => {
+  assertEquals(incrementOrdinal({ string: "20", increment: 1 }), {
+    string: "21st",
+  });
 });
 
-Deno.test("ordinalize twelfth", () => {
-  assertEquals(ordinalize(12), "12th");
+Deno.test("incrementOrdinal 21", () => {
+  assertEquals(incrementOrdinal({ string: "21", increment: 1 }), {
+    string: "22nd",
+  });
 });
 
-Deno.test("ordinalize thirteenth", () => {
-  assertEquals(ordinalize(13), "13th");
+Deno.test("incrementOrdinal 22", () => {
+  assertEquals(incrementOrdinal({ string: "22", increment: 1 }), {
+    string: "23rd",
+  });
 });
 
-Deno.test("ordinalize fourteenth", () => {
-  assertEquals(ordinalize(14), "14th");
+Deno.test("incrementOrdinal 111", () => {
+  assertEquals(incrementOrdinal({ string: "111", increment: 1 }), {
+    string: "112th",
+  });
 });
 
-Deno.test("ordinalize twenty-first", () => {
-  assertEquals(ordinalize(21), "21st");
+Deno.test("incrementOrdinal 112", () => {
+  assertEquals(incrementOrdinal({ string: "112", increment: 1 }), {
+    string: "113th",
+  });
 });
 
-Deno.test("ordinalize twenty-second", () => {
-  assertEquals(ordinalize(22), "22nd");
+Deno.test("incrementOrdinal 113", () => {
+  assertEquals(incrementOrdinal({ string: "113", increment: 1 }), {
+    string: "114th",
+  });
 });
 
-Deno.test("ordinalize twenty-third", () => {
-  assertEquals(ordinalize(23), "23rd");
-});
-
-Deno.test("ordinalize one hundred eleventh", () => {
-  assertEquals(ordinalize(111), "111th");
-});
-
-Deno.test("ordinalize one hundred twelfth", () => {
-  assertEquals(ordinalize(112), "112th");
-});
-
-Deno.test("ordinalize one hundred thirteenth", () => {
-  assertEquals(ordinalize(113), "113th");
+Deno.test("incrementOrdinal 1, increment by 2", () => {
+  assertEquals(incrementOrdinal({ string: "1", increment: 2 }), {
+    string: "3rd",
+  });
 });

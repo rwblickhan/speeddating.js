@@ -1,4 +1,7 @@
-export function ordinalize(number: number): string {
+import { IncrementOutput } from "./types.ts";
+import { IncrementParams } from "./types.ts";
+
+function ordinalize(number: number): string {
   const abs = Math.abs(number);
   if (abs % 100 == 11 || abs % 100 == 12 || abs % 100 == 13) {
     return number + "th";
@@ -11,4 +14,14 @@ export function ordinalize(number: number): string {
   } else {
     return number + "th";
   }
+}
+
+export function incrementOrdinal({
+  string,
+  increment,
+}: IncrementParams): IncrementOutput {
+  const number = parseInt(string);
+  return {
+    string: ordinalize(number + increment),
+  };
 }
